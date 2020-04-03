@@ -1,0 +1,80 @@
+HackerEarth
+
+Company 'ABC' has decided to get the details of every employee. The company wants to know id, name, manager id, manager name and computer brand of every employee.
+
+Your job is to generate the report in the above mentioned format. Output must be in ascending order of employee name.
+
+Input
+Table format
+
+Table: computer
+
+Field	Type
+id	int
+brand	varchar
+Table: employee
+
+Field	Type
+id	int
+name	text
+manager	int
+comp_id	int
+Sample
+
+Sample computer table
+
+id	brand
+1001	Dell
+1002	HP
+1003	Lenovo
+1004	Asus
+1005	Compac
+1006	Apple
+1007	Samsung
+1008	Acer
+1009	Sony
+Sample employee table
+
+id	name	manager	comp_id
+100001	Vishal	100002	1004
+100002	Kanak	100005	1006
+100003	Dinesh	100001	1002
+100004	Rajesh	100003	1001
+100005	Rohan	100001	1007
+100006	Manisha	100004	1008
+100007	Prabhat	100005	1006
+100008	Abhishek	100007	1006
+Sample output table
+
+id	name	manager_id	manager_name	comp_brand
+100008	Abhishek	100007	Prabhat	Apple
+100003	Dinesh	100001	Vishal	HP
+100002	Kanak	100005	Rohan	Apple
+100006	Manisha	100004	Rajesh	Acer
+100007	Prabhat	100005	Rohan	Apple
+100004	Rajesh	100003	Dinesh	Dell
+100005	Rohan	100001	Vishal	Samsung
+100001	Vishal	100002	Kanak	Asus
+
+
+
+Query:
+
+select  e.id as id,e.name as name,e.manager as manager_id,e2.name as manager_name,c.brand as comp_brand
+from employee e,employee e2,computer c
+where e.manager=e2.id
+and e.comp_id=c.id
+order by e.name;
+
+
+O/P
+
+id name manager_id manager_name comp_brand
+100008 Abhishek 100007 Prabhat Apple
+100003 Dinesh 100001 Vishal HP
+100002 Kanak 100005 Rohan Apple
+100006 Manisha 100004 Rajesh Acer
+100007 Prabhat 100005 Rohan Apple
+100004 Rajesh 100003 Dinesh Dell
+100005 Rohan 100001 Vishal Samsung
+100001 Vishal 100002 Kanak Asus
