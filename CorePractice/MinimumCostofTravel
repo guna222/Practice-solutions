@@ -1,0 +1,79 @@
+// MinimumCostofTravel.java - (insert one line description here)
+// (C) Copyright 2020 Hewlett Packard Enterprise Development LP
+
+package Algorithm;
+
+/*1.Start with the first city with a cost of C[1].
+2.Travel to the next city until a city j having cost less than the previous city (by which we are travelling, let’s say city i) is found.
+3.Calculate cost as abs(j – i) * C[i] and add it to the total cost so far.
+4.Repeat the previous steps until all the cities have been traversed*/
+public class MinimumCostofTravel
+{
+
+    // Function to return the minimum cost to
+    // travel from the first city to the last
+    static int minCost2(int[] cost, int n)
+    {
+        int count = 0;
+        int start = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (cost[start] > cost[i])
+            {
+                start = i;
+                count = count + cost[start];
+            }
+            else
+            {
+                count = count + cost[start];
+            }
+
+        }
+        return count;
+
+    }
+    static int minCost(int[] cost, int n)
+    {
+
+        // To store the total cost
+        int totalCost = 0;
+
+        // Start from the first city
+        int boardingBus = 0;
+
+        for (int i = 1; i < n; i++)
+        {
+
+            // If found any city with cost less than
+            // that of the previous boarded
+            // bus then change the bus
+            if (cost[boardingBus] > cost[i])
+            {
+
+                // Calculate the cost to travel from
+                // the currently boarded bus
+                // till the current city
+                totalCost += ((i - boardingBus) * cost[boardingBus]);
+
+                // Update the currently boarded bus
+                boardingBus = i;
+            }
+        }
+
+        // Finally calculate the cost for the
+        // last boarding bus till the (N + 1)th city
+        totalCost += ((n - boardingBus) * cost[boardingBus]);
+        return totalCost;
+    }
+
+    // Driver code
+    public static void main(String[] args)
+    {
+        int[] cost = {
+                4, 7, 8, 3, 4
+        };
+        int n = cost.length;
+
+        System.out.print(minCost2(cost, n));
+    }
+}
