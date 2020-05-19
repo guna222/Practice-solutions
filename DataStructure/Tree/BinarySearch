@@ -1,0 +1,35 @@
+public class FindElementBS
+{
+    public static void main(String[] args)
+    {
+
+        int[] arr = {
+                2, 3, 4, 5, 8
+        };
+        int x = 5;
+        System.out.println(solveEfficient(0, arr.length - 1, arr, x));
+
+    }
+
+    public static int solveEfficient(int start, int end,int[] arr,int x)
+    {
+        if(end>start) {
+
+            int middle = start + (end - 1) / 2;
+        if(arr[middle]==x)
+        {
+            return middle;
+        }
+        if(arr[middle]>x)
+        {
+            solveEfficient(start, middle - 1, arr, x);
+        }
+        if (arr[middle] < x)
+        {
+            solveEfficient(middle + 1, end, arr, x);
+        }
+        }
+        return -1;
+    }
+
+}
