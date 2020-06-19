@@ -14,6 +14,29 @@ public class InsertLLatMid
         }
     }
 
+    static void insertMidLL(int x)
+    {
+
+        if (head == null)
+        {
+            head = new Node(x);
+        }
+        else
+        {
+            Node newNode = new Node(x);
+            Node slow = head;
+            Node fast = head.next;
+
+            while (fast != null && fast.next != null)
+            {
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+            newNode.next = slow.next;
+            slow.next = newNode;
+            System.out.println(head);
+        }
+    }
     public static void main(String[] args)
     {
         head = new Node(10);
